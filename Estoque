@@ -1,1 +1,74 @@
+package estoqueitens;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import controller.Instrucoes;
+
+public class EstoqueConfig {
+
+	public class Estoque {
+		public List<Instrucoes> itens = new ArrayList<>();
+		public Scanner scanner = new Scanner(System.in);
+		
+		public void iniciar() {
+			boolean executando = true;
+			
+			while (executando) {
+				System.out.println("\n Escolha uma opção: \n");
+				System.out.println(" 1 - Cadastrar Item ");
+				System.out.println(" 2 - Listar Itens ");
+				System.out.println(" 3 - Sair ");
+				int opcao = scanner.nextInt();
+				scanner.nextLine();
+				
+				switch(opcao) {
+				
+				case 1:
+					cadastrarItem();
+					break;
+				
+				case 2:
+					listarItens();
+					break;
+					
+				case 3:
+					executando = false;
+					System.out.println("Até logo!");
+					break;
+					
+				default:
+					System.out.println(" Opção Inválida!");
+				}
+			}
+			scanner.close();	
+		}
+		
+		public void cadastrarItem() {
+			System.out.println("Nome do Item: ");
+			String nome = scanner.nextLine();
+			
+			System.out.println("Quantidade do item: ");
+			int quantidade = scanner.nextInt();
+			
+			System.out.println("Preço do item: ");
+			double preco = scanner.nextDouble();
+			
+			Instrucoes item = new Instrucoes(nome, quantidade, preco);
+			itens.add(item);
+			System.out.println("Item cadastrado com sucesso!");
+			}
+		
+		public void listarItens() {
+			
+			if(itens.isEmpty()) {
+				System.out.println("Nenhum item foi cadastrado.");
+			}else {
+				
+				for(Instrucoes item: itens) {
+					System.out.println(item);
+				}
+			}
+		}
+	}
+}
