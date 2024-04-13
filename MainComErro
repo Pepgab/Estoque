@@ -1,0 +1,11 @@
+package main;
+import estoqueitens.EstoqueConfig;
+public class MainEstoque {
+
+	public static void main (String[] args) {
+		
+		EstoqueConfig.Estoque estoque = new EstoqueConfig.Estoque();
+		estoque.iniciar();
+	
+}
+}
